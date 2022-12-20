@@ -1,44 +1,45 @@
-import { useContext } from "react"
-import classes from "./PickCategoryView.module.css"
-import Config from "../config/QuizConfig"
-import Context from "../context/QuizContext"
+import { useContext } from "react";
+import classes from "./PickCategoryView.module.css";
+import Config from "../config/QuizConfig";
+import Context from "../context/QuizContext";
 
-import { fetchQuestions } from "../api/FetchQuestion"
-import { QuestionDifficulties } from "../enums/QuestionDifficulties"
-import { useShuffleAnswers } from "../utilities/useShuffleArray"
+import { fetchQuestions } from "../api/FetchQuestion";
+import { QuestionDifficulties } from "../enums/QuestionDifficulties";
+import { useShuffleAnswers } from "../utilities/useShuffleArray";
+import { Views } from "../enums/Views";
 
 const PickCategoryView = () => {
   const { difficulty, setAnswerOptions, setCategory, setQuestion, setView } =
-    useContext(Context)
+    useContext(Context);
 
-  const shuffleCategories = Config.categories.sort(() => 0.5 - Math.random())
+  const shuffleCategories = Config.categories.sort(() => 0.5 - Math.random());
 
-  let pickedDifficulty = difficulty
+  let pickedDifficulty = difficulty;
   if (difficulty === "random") {
-    const difficulties = Object.values(QuestionDifficulties)
-    const randomizeDifficulties = difficulties.sort(() => 0.5 - Math.random())
-    pickedDifficulty = randomizeDifficulties[0]
+    const difficulties = Object.values(QuestionDifficulties);
+    const randomizeDifficulties = difficulties.sort(() => 0.5 - Math.random());
+    pickedDifficulty = randomizeDifficulties[0];
   }
 
   const clickHandler = (category: string) => {
-    setCategory(category)
-    setAnswerOptions([])
+    setCategory(category);
+    setAnswerOptions([]);
 
     const fetchQuestion = async () => {
-      const newQuestion = await fetchQuestions(category, pickedDifficulty)
-      setQuestion(newQuestion)
+      const newQuestion = await fetchQuestions(category, pickedDifficulty);
+      setQuestion(newQuestion);
 
       setAnswerOptions(
         useShuffleAnswers(
           newQuestion[0]?.correctAnswer,
           newQuestion[0]?.incorrectAnswers
         )
-      )
-    }
-    fetchQuestion()
+      );
+    };
+    fetchQuestion();
 
-    setView("question")
-  }
+    setView(Views.QUESTION);
+  };
 
   return (
     <>
@@ -53,7 +54,7 @@ const PickCategoryView = () => {
         </button>
       ))}
     </>
-  )
-}
+  );
+};
 
-export default PickCategoryView
+export default PickCategoryView;

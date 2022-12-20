@@ -1,6 +1,7 @@
 describe("One round of a quiz game", () => {
-  it(" should show a page how starts the quiz", () => {
+  it(" should show a page that starts the quiz", () => {
     cy.visit("http://localhost:5173")
+    
     // start view
     cy.get("button").should("contain", "Start quiz")
     cy.get("[data-testid=playername-input]").type("TestName")
@@ -14,7 +15,7 @@ describe("One round of a quiz game", () => {
     cy.get("[data-testid=answer-button]:first").click()
 
     // category view
-    cy.get("p").should("contain", "Pick category for next question:")
+    cy.get("h2").should("contain", "Pick category for next question:")
     cy.get("[data-testid=category-button]:first").click()
 
     // question view
@@ -23,7 +24,7 @@ describe("One round of a quiz game", () => {
     cy.get("[data-testid=answer-button]:first").click()
 
     // category view
-    cy.get("p").should("contain", "Pick category for next question:")
+    cy.get("h2").should("contain", "Pick category for next question:")
     cy.get("[data-testid=category-button]:first").click()
 
     // question view
@@ -32,7 +33,7 @@ describe("One round of a quiz game", () => {
     cy.get("[data-testid=answer-button]:first").click()
 
     // category view
-    cy.get("p").should("contain", "Pick category for next question:")
+    cy.get("h2").should("contain", "Pick category for next question:")
     cy.get("[data-testid=category-button]:first").click()
 
     // question view
@@ -41,7 +42,7 @@ describe("One round of a quiz game", () => {
     cy.get("[data-testid=answer-button]:first").click()
 
     // category view
-    cy.get("p").should("contain", "Pick category for next question:")
+    cy.get("h2").should("contain", "Pick category for next question:")
     cy.get("[data-testid=category-button]:first").click()
 
     // question view
@@ -50,7 +51,7 @@ describe("One round of a quiz game", () => {
     cy.get("[data-testid=answer-button]:first").click()
 
     // category view
-    cy.get("p").should("contain", "Pick category for next question:")
+    cy.get("h2").should("contain", "Pick category for next question:")
     cy.get("[data-testid=category-button]:first").click()
 
     // question view
@@ -59,7 +60,7 @@ describe("One round of a quiz game", () => {
     cy.get("[data-testid=answer-button]:first").click()
 
     // category view
-    cy.get("p").should("contain", "Pick category for next question:")
+    cy.get("h2").should("contain", "Pick category for next question:")
     cy.get("[data-testid=category-button]:first").click()
 
     // question view
@@ -68,7 +69,7 @@ describe("One round of a quiz game", () => {
     cy.get("[data-testid=answer-button]:first").click()
 
     // category view
-    cy.get("p").should("contain", "Pick category for next question:")
+    cy.get("h2").should("contain", "Pick category for next question:")
     cy.get("[data-testid=category-button]:first").click()
 
     // question view
@@ -77,7 +78,7 @@ describe("One round of a quiz game", () => {
     cy.get("[data-testid=answer-button]:first").click()
 
     // category view
-    cy.get("p").should("contain", "Pick category for next question:")
+    cy.get("h2").should("contain", "Pick category for next question:")
     cy.get("[data-testid=category-button]:first").click()
 
     // question view
@@ -87,6 +88,6 @@ describe("One round of a quiz game", () => {
 
     // game over view
     cy.get("h2").should("contain", "Game over")
-    cy.get("p").contains(/Your score is: \d+ points/i)
+    cy.get("p").contains(/You got \d+ points/i)
   })
 })

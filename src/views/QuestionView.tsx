@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from "react"
-import classes from "./QuestionView.module.css"
-import Config from "../config/QuizConfig"
-import Context from "../context/QuizContext"
+import { useContext, useEffect, useState } from "react";
+import classes from "./QuestionView.module.css";
+import Config from "../config/QuizConfig";
+import Context from "../context/QuizContext";
 
-import { DifficultyPoints } from "../enums/DifficultyPoints"
-import { QuestionDifficulties } from "../enums/QuestionDifficulties"
+import { DifficultyPoints } from "../enums/DifficultyPoints";
+import { QuestionDifficulties } from "../enums/QuestionDifficulties";
+import { Views } from "../enums/Views";
 
 const QuestionView = () => {
   const {
@@ -12,69 +13,65 @@ const QuestionView = () => {
     questionAnswers,
     question,
     setQuestionAnswers,
-    setView
-  } = useContext(Context)
-  const { answerTime, questionCountDown, totalQuestions } = Config
-  const [countDown, setCoundDown] = useState(questionCountDown)
-  const [timer, setTimer] = useState(answerTime + questionCountDown)
-  let currentAnswer = { difficultyPoints: 0, timePoints: 0 }
+    setView,
+  } = useContext(Context);
+  const { answerTime, questionCountDown, totalQuestions } = Config;
+  const [countDown, setCoundDown] = useState(questionCountDown);
+  const [timer, setTimer] = useState(answerTime + questionCountDown);
+  let currentAnswer = { difficultyPoints: 0, timePoints: 0 };
 
   useEffect(() => {
-    if (countDown <= 0) return
+    if (countDown <= 0) return;
     const countDownInterval = setInterval(() => {
-      setCoundDown(countDown - 1)
-    }, 1000)
-    return () => clearInterval(countDownInterval)
-  }, [countDown])
+      setCoundDown(countDown - 1);
+    }, 1000);
+    return () => clearInterval(countDownInterval);
+  }, [countDown]);
 
   useEffect(() => {
-    if (timer <= 0) return
+    if (timer <= 0) return;
     const timerInterval = setInterval(() => {
-      setTimer(timer - 1)
-    }, 1000)
-    return () => clearInterval(timerInterval)
-  }, [timer])
+      setTimer(timer - 1);
+    }, 1000);
+    return () => clearInterval(timerInterval);
+  }, [timer]);
 
   useEffect(() => {
     if (timer === 0) {
       setQuestionAnswers((prevAnswers: object[]) => [
         ...prevAnswers,
-        currentAnswer
-      ])
+        currentAnswer,
+      ]);
 
       if (questionAnswers.length + 1 < totalQuestions) {
-        setView("pickCategory")
+        setView("pickCategory");
       } else {
-        setView("end")
+        setView(Views.END);
       }
     }
-  }, [timer === 0])
+  }, [timer === 0]);
 
   const clickHandler = (pickedAnswer: string) => {
-    let questionDifficultyType: QuestionDifficulties = question[0]?.difficulty
-    currentAnswer.timePoints = timer
+    let questionDifficultyType: QuestionDifficulties = question[0]?.difficulty;
+    currentAnswer.timePoints = timer;
 
     if (pickedAnswer === question[0]?.correctAnswer) {
-      currentAnswer.difficultyPoints = DifficultyPoints[questionDifficultyType]
-
-      setQuestionAnswers((prevAnswers: object[]) => [
-        ...prevAnswers,
-        currentAnswer
-      ])
+      currentAnswer.difficultyPoints = DifficultyPoints[questionDifficultyType];
     } else {
-      currentAnswer.difficultyPoints = DifficultyPoints["wrong"]
-      setQuestionAnswers((prevAnswers: object[]) => [
-        ...prevAnswers,
-        currentAnswer
-      ])
+      currentAnswer.difficultyPoints = DifficultyPoints["wrong"];
     }
+
+    setQuestionAnswers((prevAnswers: object[]) => [
+      ...prevAnswers,
+      currentAnswer,
+    ]);
 
     if (questionAnswers.length + 1 < totalQuestions) {
-      setView("pickCategory")
+      setView(Views.PICK_CATEGORY);
     } else {
-      setView("end")
+      setView(Views.END);
     }
-  }
+  };
 
   return (
     <>
@@ -96,14 +93,14 @@ const QuestionView = () => {
                 >
                   {answer}
                 </button>
-              )
+              );
             })}
           </div>
           {timer}
         </>
       )}
     </>
-  )
-}
+  );
+};
 
-export default QuestionView
+export default QuestionView;

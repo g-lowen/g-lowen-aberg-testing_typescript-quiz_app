@@ -1,12 +1,13 @@
-import { useContext, useRef } from "react"
+import { useContext, useRef } from "react";
 
-import classes from "./StartView.module.css"
-import Config from "../config/QuizConfig"
-import Context from "../context/QuizContext"
+import classes from "./StartView.module.css";
+import Config from "../config/QuizConfig";
+import Context from "../context/QuizContext";
 
-import { fetchQuestions } from "../api/FetchQuestion"
-import { QuestionDifficulties } from "../enums/QuestionDifficulties"
-import { useShuffleAnswers } from "../utilities/useShuffleArray"
+import { fetchQuestions } from "../api/FetchQuestion";
+import { QuestionDifficulties } from "../enums/QuestionDifficulties";
+import { useShuffleAnswers } from "../utilities/useShuffleArray";
+import { Views } from "../enums/Views";
 
 const StartView = () => {
   const {
@@ -14,43 +15,46 @@ const StartView = () => {
     setDifficulty,
     setPlayerName,
     setQuestion,
-    setView
-  } = useContext(Context)
-  const categoryRef = useRef<HTMLSelectElement>(null)
-  const difficultyRef = useRef<HTMLSelectElement>(null)
-  const nameRef = useRef<HTMLInputElement>(null)
+    setView,
+  } = useContext(Context);
+  const categoryRef = useRef<HTMLSelectElement>(null);
+  const difficultyRef = useRef<HTMLSelectElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
 
-  const shuffleCategories = Config.categories.sort(() => 0.5 - Math.random())
+  const shuffleCategories = Config.categories.sort(() => 0.5 - Math.random());
 
   const submitHandler = (event: React.FormEvent) => {
-    event.preventDefault()
-    const pickedCategory = categoryRef.current!.value
-    let pickedDifficulty = difficultyRef.current!.value
-    const enteredName = nameRef.current!.value
+    event.preventDefault();
+    const pickedCategory = categoryRef.current!.value;
+    let pickedDifficulty = difficultyRef.current!.value;
+    const enteredName = nameRef.current!.value;
 
-    setDifficulty(pickedDifficulty)
-    setPlayerName(enteredName)
+    setDifficulty(pickedDifficulty);
+    setPlayerName(enteredName);
     if (pickedDifficulty === "random") {
       let randomizeDifficulties = Object.values(QuestionDifficulties).sort(
         () => 0.5 - Math.random()
-      )
-      pickedDifficulty = randomizeDifficulties[0]
+      );
+      pickedDifficulty = randomizeDifficulties[0];
     }
 
     const fetchQuestion = async () => {
-      const newQuestion = await fetchQuestions(pickedCategory, pickedDifficulty)
-      setQuestion(newQuestion)
+      const newQuestion = await fetchQuestions(
+        pickedCategory,
+        pickedDifficulty
+      );
+      setQuestion(newQuestion);
 
       setAnswerOptions(
         useShuffleAnswers(
           newQuestion[0]?.correctAnswer,
           newQuestion[0]?.incorrectAnswers
         )
-      )
-    }
-    fetchQuestion()
-    setView("question")
-  }
+      );
+    };
+    fetchQuestion();
+    setView(Views.QUESTION);
+  };
   return (
     <section className={classes["start-view"]}>
       <form onSubmit={submitHandler}>
@@ -92,7 +96,7 @@ const StartView = () => {
         </label>
       </form>
     </section>
-  )
-}
+  );
+};
 
-export default StartView
+export default StartView;

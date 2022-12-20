@@ -4,5 +4,5 @@
     "lib": ["es5", "dom"],
     "types": ["cypress", "node"]
   },
-  "include": ["**/*.ts", "e2e/quizgame.cy.ts"]
+  "include": ["**/*.ts", "e2e/quizGame.cy.ts", "e2e/scoreCalculation.cy.ts"]
 }

@@ -1,28 +1,28 @@
-import React, { useState } from "react"
-import classes from "./Home.module.css"
-import Config from "../config/QuizConfig"
-import Context from "../context/QuizContext.js"
+import React, { useState } from "react";
+import classes from "./Home.module.css";
+import Config from "../config/QuizConfig";
+import Context from "../context/QuizContext.js";
 
-import { Points } from "../interfaces/IPoints"
-import { Question } from "../interfaces/IQuestion"
-import { Views } from "../enums/Views"
+import { Points } from "../interfaces/IPoints";
+import { Question } from "../interfaces/IQuestion";
+import { Views } from "../enums/Views";
 
-import GameOverView from "../views/GameOverView"
-import PickCategoryView from "../views/PickCategoryView"
-import QuestionView from "../views/QuestionView"
-import Spinner from "../components/spinner/Spinner"
-import StartView from "../views/StartView"
+import GameOverView from "../views/GameOverView";
+import PickCategoryView from "../views/PickCategoryView";
+import QuestionView from "../views/QuestionView";
+import Spinner from "../components/spinner/Spinner";
+import StartView from "../views/StartView";
 
 const Home: React.FC = () => {
-  const [answerOptions, setAnswerOptions] = useState<string[]>([])
-  const [category, setCategory] = useState<string>("")
-  const [difficulty, setDifficulty] = useState<string>()
-  const [playerName, setPlayerName] = useState<string>("")
-  const [question, setQuestion] = useState<Question>()
-  const [questionAnswers, setQuestionAnswers] = useState<Points[]>([])
-  const [view, setView] = useState<Views>(Views.START)
+  const [answerOptions, setAnswerOptions] = useState<string[]>([]);
+  const [category, setCategory] = useState<string>("");
+  const [difficulty, setDifficulty] = useState<string>();
+  const [playerName, setPlayerName] = useState<string>("");
+  const [question, setQuestion] = useState<Question>();
+  const [questionAnswers, setQuestionAnswers] = useState<Points[]>([]);
+  const [view, setView] = useState<Views>(Views.START);
 
-  const { totalQuestions } = Config
+  const { totalQuestions } = Config;
 
   return (
     <Context.Provider
@@ -39,7 +39,7 @@ const Home: React.FC = () => {
         setPlayerName,
         setQuestion,
         setQuestionAnswers,
-        setView
+        setView,
       }}
     >
       <section className={classes.home}>
@@ -66,7 +66,7 @@ const Home: React.FC = () => {
         <button onClick={() => setView("end")}>End</button> */}
       </section>
     </Context.Provider>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

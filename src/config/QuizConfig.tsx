@@ -1,4 +1,4 @@
-import { Category } from "../interfaces/ICategory"
+import { Category } from "../interfaces/ICategory";
 
 const CATEGORIES: Category[] = [
   { id: "arts_and_literature", name: "Arts & Literature" },
@@ -10,18 +10,18 @@ const CATEGORIES: Category[] = [
   { id: "music", name: "Music" },
   { id: "science", name: "Science" },
   { id: "society_and_culture", name: "Society & Culture" },
-  { id: "sport_and_leisure", name: "Sport & Leisure" }
-]
+  { id: "sport_and_leisure", name: "Sport & Leisure" },
+];
 
-const ANSWER_TIME = 30
-const QUESTION_COUNTDOWN = 3
-const TOTAL_QUESTIONS = 9
+const ANSWER_TIME = 30;
+const QUESTION_COUNTDOWN = 3;
+const TOTAL_QUESTIONS = 9;
 
 const Config = {
   answerTime: ANSWER_TIME,
   categories: CATEGORIES,
   questionCountDown: QUESTION_COUNTDOWN,
-  totalQuestions: TOTAL_QUESTIONS
-}
+  totalQuestions: TOTAL_QUESTIONS,
+};
 
-export default Config
+export default Config;
