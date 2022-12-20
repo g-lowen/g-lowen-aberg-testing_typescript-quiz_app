@@ -1,0 +1,15 @@
+.start-view form {
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: 1fr;
+}
+
+.start-view input,
+.start-view select {
+  display: block;
+}
+
+.start-view label,
+.start-view select {
+  margin: auto;
+}

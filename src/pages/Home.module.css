@@ -1,0 +1,21 @@
+.home {
+  margin: auto;
+  padding-top: 4rem;
+  text-align: center;
+  width: 500px;
+}
+
+.home h1 {
+  align-items: center;
+  background-color: var(--mainLightPink);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+.view-container {
+  background-color: aliceblue;
+  height: 200px;
+  display: grid;
+}

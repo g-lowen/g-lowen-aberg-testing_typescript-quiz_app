@@ -1,0 +1,21 @@
+.question {
+  border-radius: 5px;
+  height: 200px;
+  margin: 5px 0 5px 0;
+  padding: 24px;
+}
+
+.question h4 {
+  padding-bottom: 36px;
+}
+
+.question-container {
+  display: grid;
+  gap: 5px;
+  grid-auto-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+
+.question-container button {
+  padding: 5px;
+}
