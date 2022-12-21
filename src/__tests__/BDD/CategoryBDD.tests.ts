@@ -19,13 +19,10 @@ defineFeature(featureCategory, (test) => {
       getCategoryResult = getCategory(c)
     })
 
-    when("Picking category", () => {
-      // getCategoryResult = getCategory(category);
-    })
+    when("Picking category", () => {})
 
     then(/^The picked category should be: ([a-zA-Z]+)$/, (expected) => {
       let result = getCategory(expected)
-      console.log(result, getCategoryResult)
       expect(getCategoryResult).toBe(result)
     })
   })
@@ -48,22 +45,10 @@ defineFeature(featureDifficulty, (test) => {
       getDifficultyResult = getDifficulty(d)
     })
 
-    when("Picking difficulty", () => {
-      // Object.keys(QuestionDifficulties).map((difficulty) => {
-      //   if (getDifficultyResult !== difficulty) {
-      //     throw new Error(`Difficulty doesn't match here!`)
-      //   }
-      //   console.log(
-      //     "difficulty, getDifficultyResult",
-      //     difficulty,
-      //     getDifficultyResult
-      //   )
-      // })
-    })
+    when("Picking difficulty", () => {})
 
     then(/^The picked difficulty should be: ([a-zA-Z]+)$/, (expected) => {
       let result = getDifficulty(expected)
-      console.log(result, getDifficultyResult)
       expect(getDifficultyResult).toBe(result)
     })
   })

@@ -1,22 +1,24 @@
-import { useContext, useRef } from "react"
+import { useRef, useState } from "react"
 
 import classes from "./StartView.module.css"
 import Config from "../config/QuizConfig"
-import Context from "../context/QuizContext"
+import { Points } from "../interfaces/IPoints"
+import { Question } from "../interfaces/IQuestion"
 
 import { fetchQuestions } from "../api/FetchQuestion"
 import { QuestionDifficulties } from "../enums/QuestionDifficulties"
 import { useShuffleAnswers } from "../utilities/useShuffleArray"
 import { Views } from "../enums/Views"
 
-const StartView = () => {
-  const {
-    setAnswerOptions,
-    setDifficulty,
-    setPlayerName,
-    setQuestion,
-    setView
-  } = useContext(Context)
+const TestStartView = () => {
+  const [answerOptions, setAnswerOptions] = useState<string[]>([])
+  const [category, setCategory] = useState<string>("")
+  const [difficulty, setDifficulty] = useState<string>()
+  const [playerName, setPlayerName] = useState<string>("")
+  const [question, setQuestion] = useState<Question>()
+  const [questionAnswers, setQuestionAnswers] = useState<Points[]>([])
+  const [view, setView] = useState<Views>(Views.START)
+
   const categoryRef = useRef<HTMLSelectElement>(null)
   const difficultyRef = useRef<HTMLSelectElement>(null)
   const nameRef = useRef<HTMLInputElement>(null)
@@ -96,4 +98,4 @@ const StartView = () => {
   )
 }
 
-export default StartView
+export default TestStartView
