@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
 participant User
 participant Quiz
@@ -22,3 +23,4 @@ participant API
       Quiz-->>User: Route to End View
 
 end
+```

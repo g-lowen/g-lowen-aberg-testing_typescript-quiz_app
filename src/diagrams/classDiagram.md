@@ -1,3 +1,4 @@
+```mermaid
 classDiagram
 App <|-- Home
 Home <|-- Start View
@@ -29,3 +30,4 @@ Start View <|-- FetchQuestion
     class FetchQuestion {
 
     }
+```
