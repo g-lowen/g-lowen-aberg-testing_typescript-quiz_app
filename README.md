@@ -4,23 +4,29 @@ This app was made during a school project. The app is fetching data from the API
 
 ## Used tests
 
-In the project directory, you can find following tests:
+- BDD tests
+- End-2-End tests
+- Unit tests
 
 ## Used test strategies
 
-In the project directory, you can find following test strategies:
+- Cypress
+- Jest
+- React testing library
+- TDD
 
 ## Used diagrams
 
-In the project directory, you can find following diagrams:
+- Class Diagram
+- Sequence Diagram
 
-### Class Diagram
+Diagrams can be located in src/diagrams
 
-The UML class diagram can be located in src/diagrams/classDiagram.md
+## Used design principles
 
-### Sequence Diagram
-
-The UML sequence diagram can be located in src/diagrams/sequenceDiagram.md
+- DRY
+- KISS
+- YAGNI
 
 ## Available Scripts
 
